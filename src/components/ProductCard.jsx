@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
 
                         <div className="d-flex gap-2">
                             <Link
-                                to="/checkout"
+                                to={`/products/${product.id}`}
                                 className="btn btn-secondary rounded-0 flex-fill"
                             >
                                 View Details

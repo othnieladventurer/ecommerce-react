@@ -2,7 +2,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form"
-import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
@@ -11,7 +11,7 @@ export default function Auth() {
 
     const navigate = useNavigate();
 
-    const {signup, user, logout, login } = useContext(AuthContext);
+    const {signup, user, logout, login } = useAuth();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -32,7 +32,7 @@ export default function Auth() {
             setError(result.error);
         }
 
-        console.log(result);
+   
     }
 
 
@@ -51,9 +51,8 @@ export default function Auth() {
                         
                         {/* Title */}
                         <div className="text-center mb-4">
-                        { user && <p>User logged in: {user.email}</p>}
-                        <button onClick={() => logout()} className="btn btn-outline-secondary">Logout</button>
-
+                        
+                        
                         <h2 className="fw-bold">{mode === 'signup' ? 'Sign Up' : 'Login'}</h2>
                         <p className="text-muted mb-0">Create your account to get started</p>
                         </div>
