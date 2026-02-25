@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
-import { getProducts } from "../data/products";
-
+import { useCart } from "../context/Cart";
 
 export default function ProductCard({ product }) {
+    const { addToCart, cartItems } = useCart();
+    const productInCart = cartItems.find((item) => item.id === product.id)
+
+    const productQuantityLabel = productInCart ? ` (${productInCart.quantity})` : "";
+
     return (
         <div className="col">
             <div className="card h-100">
@@ -32,8 +36,9 @@ export default function ProductCard({ product }) {
                             <button
                                 type="button"
                                 className="btn btn-primary rounded-0 flex-fill"
+                                onClick={() => addToCart(product.id)}
                             >
-                                Add to Cart
+                                Add to Cart {productQuantityLabel}
                             </button>
                         </div>
                     </div>
@@ -42,6 +47,3 @@ export default function ProductCard({ product }) {
         </div>
     );
 }
-
-
-

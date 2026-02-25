@@ -5,23 +5,26 @@ import Checkout from './pages/Checkout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
 import AuthProvider from './context/AuthContext';
+import CartProvider from './context/Cart';
 import ProductDetails from './pages/ProductDetails';
 
 function App() {
   
   return (
     <AuthProvider>
-      <div className="">
-        <Navbar />
+      <CartProvider>
+        <div className="">
+          <Navbar />
 
-        
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/products/:id" element={<ProductDetails />} />
-        </Routes>
-      </div>
+          
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+          </Routes>
+        </div>
+      </CartProvider>
     </AuthProvider>
   );
 }
